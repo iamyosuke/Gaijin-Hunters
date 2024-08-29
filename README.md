@@ -1,24 +1,74 @@
-# README
+# Gaijin Hunters - 国際交流アプリ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## プロジェクト概要
 
-Things you may want to cover:
+Gaijin Huntersは、日本人と海外の人々が交流できるWebアプリケーションです。このアプリは、国際交流、英語学習、友達作り、恋愛などを目的としたプラットフォームとして機能します。
 
-* Ruby version
+## 主な機能要件
 
-* System dependencies
+1. ユーザー登録と認証
+2. プロフィール管理
+3. マッチング機能
+4. チャット機能
+5. 検索機能
+6. 通知機能
 
-* Configuration
+## 技術スタック
 
-* Database creation
+- バックエンド: Ruby on Rails
+- フロントエンド: Hotwire (Turbo, Stimulus)
+- データベース: PostgreSQL
+- 認証: Devise
+- スタイリング: Tailwind CSS
 
-* Database initialization
+## 現在の進捗
 
-* How to run the test suite
+1. プロジェクトの初期設定完了
+   - Rails アプリケーションの作成
+   - Devise のインストールと設定
+   - Tailwind CSS のセットアップ
 
-* Services (job queues, cache servers, search engines, etc.)
+2. 基本的なユーザー認証機能の実装
+   - ユーザー登録
+   - ログイン/ログアウト
+   - パスワードリセット
 
-* Deployment instructions
+3. ホームページの作成
+   - ウェルカムメッセージ
+   - 登録/ログインリンク
 
-* ...
+4. レイアウトの基本設定
+   - ナビゲーションバー
+   - フラッシュメッセージ
+
+## 次のステップ
+
+1. プロフィール管理機能の実装
+2. マッチング機能の基本実装
+3. チャット機能の開発
+4. 検索機能の実装
+5. 通知システムの構築
+
+## 保留中の機能
+
+- イベント作成・参加機能
+- 評価・レビュー機能
+
+これらの機能は、MVPの開発後に検討する予定です。
+
+## セットアップ手順
+
+1. リポジトリをクローン
+2. 依存関係をインストール: `bundle install`
+3. データベースを作成: `rails db:create`
+4. マイグレーションを実行: `rails db:migrate`
+5. Tailwind CSSのビルドを監視: `rails tailwindcss:watch`
+6. サーバーを起動: `rails s`
+
+## 貢献
+
+プロジェクトへの貢献を歓迎します。イシューの報告や新機能の提案は、GitHubのIssueを通じて行ってください。
+
+## ライセンス
+
+このプロジェクトはMITライセンスの下で公開されています。
