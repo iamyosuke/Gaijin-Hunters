@@ -1,16 +1,69 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>GaijinHunters</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+<head>
+  <title>GaijinHunters</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
-  <body>
-    <%= yield %>
-  </body>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
+
+<body class="h-full">
+  <div class="min-h-full">
+    <nav class="bg-indigo-600">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center">
+            <div class="flex-shrink-0">
+              <%= link_to root_path, class: "text-white font-bold text-xl" do %>
+              <span>🌏</span> Global Connect
+              <% end %>
+            </div>
+            <div class="hidden md:block">
+              <div class="ml-10 flex items-baseline space-x-4">
+                <%= link_to 'ホーム', root_path, class: "text-white hover:bg-indigo-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium" %>
+                <!-- 他のナビゲーションリンクをここに追加 -->
+              </div>
+            </div>
+          </div>
+          <div class="hidden md:block">
+            <div class="ml-4 flex items-center md:ml-6">
+              <% if user_signed_in? %>
+              <%= link_to 'プロフィール編集', edit_user_registration_path, class: "text-white hover:bg-indigo-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium" %>
+              <%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class: "text-white hover:bg-indigo-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium" %>
+              <% else %>
+              <%= link_to '新規登録', new_user_registration_path, class: "text-white hover:bg-indigo-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium" %>
+              <%= link_to 'ログイン', new_user_session_path, class: "text-white hover:bg-indigo-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <% if notice %>
+        <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4" role="alert">
+          <p class="font-bold">成功</p>
+          <p><%= notice %></p>
+        </div>
+        <% end %>
+        <% if alert %>
+        <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4" role="alert">
+          <p class="font-bold">警告</p>
+          <p><%= alert %></p>
+        </div>
+        <% end %>
+
+        <%= yield %>
+      </div>
+    </main>
+  </div>
+</body>
+
 </html>

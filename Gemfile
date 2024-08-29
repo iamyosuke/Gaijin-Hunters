@@ -75,3 +75,5 @@ gem 'devise'
 gem 'hotwire-rails'
 gem 'simple_form'
 
+gem 'foreman', require: false
+gem "tailwindcss-rails", "~> 2.7"
