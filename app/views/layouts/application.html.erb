@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-full bg-gray-100">
 
 <head>
   <title>GaijinHunters</title>
@@ -7,7 +7,6 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_importmap_tags %>
 </head>
@@ -26,6 +25,9 @@
             <div class="hidden md:block">
               <div class="ml-10 flex items-baseline space-x-4">
                 <%= link_to 'ホーム', root_path, class: "text-white hover:bg-indigo-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium" %>
+                <% if user_signed_in? %>
+                <%= link_to 'プロフィール', profile_path, class: "text-white hover:bg-indigo-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium" %>
+                <% end %>
                 <!-- 他のナビゲーションリンクをここに追加 -->
               </div>
             </div>
@@ -33,7 +35,7 @@
           <div class="hidden md:block">
             <div class="ml-4 flex items-center md:ml-6">
               <% if user_signed_in? %>
-              <%= link_to 'プロフィール編集', edit_user_registration_path, class: "text-white hover:bg-indigo-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium" %>
+              <%= link_to 'プロフィール編集', edit_profile_path, class: "text-white hover:bg-indigo-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium" %>
               <%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class: "text-white hover:bg-indigo-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium" %>
               <% else %>
               <%= link_to '新規登録', new_user_registration_path, class: "text-white hover:bg-indigo-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium" %>
@@ -45,8 +47,8 @@
       </div>
     </nav>
 
-    <main>
-      <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+    <main class="py-10">
+      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <% if notice %>
         <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4" role="alert">
           <p class="font-bold">成功</p>
