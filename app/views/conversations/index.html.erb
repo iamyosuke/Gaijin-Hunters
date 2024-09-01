@@ -1,0 +1,27 @@
+<div class="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-3xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6">Your Conversations</h1>
+
+    <div class="space-y-4">
+      <% @conversations.each do |conversation| %>
+      <% other_user = conversation.sender == current_user ? conversation.receiver : conversation.sender %>
+      <%= link_to conversation_path(conversation), class: "block" do %>
+      <div class="flex items-center justify-between bg-white p-4 rounded-lg shadow hover:bg-gray-50 transition duration-150">
+        <div class="flex items-center space-x-4">
+          <% if other_user.profile.avatar.attached? %>
+          <%= image_tag other_user.profile.avatar, class: "h-12 w-12 rounded-full" %>
+          <% else %>
+          <div class="h-12 w-12 bg-gray-300 rounded-full"></div>
+          <% end %>
+          <div>
+            <h2 class="text-lg font-medium text-gray-900"><%= other_user.email.split('@').first %></h2>
+            <p class="text-sm text-gray-500"><%= conversation.messages.last&.content&.truncate(50) || "No messages yet" %></p>
+          </div>
+        </div>
+        <span class="text-sm text-gray-500"><%= time_ago_in_words(conversation.messages.last&.created_at || conversation.created_at) %> ago</span>
+      </div>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

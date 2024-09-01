@@ -2,4 +2,6 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 // import 'swiper/swiper-bundle.min.css'
-// import Swiper from 'swiper/bundle'
+// import Swiper from 'swiper/bundle'import "./channels"
+import "channels"
+console.log("Application pack loaded");

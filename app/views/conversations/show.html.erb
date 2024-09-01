@@ -1,0 +1,20 @@
+<div class="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-3xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6">Chat with <%= @conversation.sender == current_user ? @conversation.receiver.email.split('@').first : @conversation.sender.email.split('@').first %></h1>
+
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+      <div id="messages" class="p-4 h-96 overflow-y-auto">
+        <%= render @messages %>
+      </div>
+
+      <%= form_with(model: [@conversation, @message], local: false, id: 'message-form', class: "p-4 border-t", data: { receiver_id: @conversation.sender == current_user ? @conversation.receiver_id : @conversation.sender_id }) do |f| %>
+      <div class="flex items-center">
+        <%= f.text_field :content, id: 'message-input', placeholder: "Type a message...", class: "flex-grow mr-2 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" %>
+        <%= f.submit "Send", class: "px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-150" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div id="conversation-id" data-conversation-id="<%= @conversation.id %>" style="display: none;"></div>

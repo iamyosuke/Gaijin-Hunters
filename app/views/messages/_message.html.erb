@@ -1,0 +1,4 @@
+<div class="message <%= message.sender == current_user ? 'sent' : 'received' %>">
+  <p><%= message.content %></p>
+  <small><%= message.sender.email %> - <%= time_ago_in_words(message.created_at) %> ago</small>
+</div>

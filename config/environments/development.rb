@@ -60,6 +60,9 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
+  config.action_cable.mount_path = '/cable'
+  config.action_cable.url = 'ws://localhost:3001/cable'
+  config.action_cable.allowed_request_origins = [ 'http://localhost:3001', 'http://127.0.0.1:3001' ]
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
