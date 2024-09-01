@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'users/index'
+  get 'users/swipe'
   resources :swipes, only: [:create]
   resources :matches, only: [:index]
   resources :users, only: [:index]

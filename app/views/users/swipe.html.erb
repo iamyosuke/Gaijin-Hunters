@@ -1,0 +1,80 @@
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+  <div class="relative py-3 sm:max-w-xl sm:mx-auto">
+    <div class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-light-blue-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+    <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+      <div class="max-w-md mx-auto">
+        <div class="divide-y divide-gray-200">
+          <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+            <h1 class="text-3xl font-extrabold text-center text-gray-900">
+              ユーザープロフィール
+            </h1>
+
+            <div data-controller="swiper" class="swiper-container w-full max-w-md mx-auto h-[70vh] relative">
+              <div class="swiper-wrapper">
+                <% @users_to_swipe.each do |user| %>
+                <div class="swiper-slide bg-white shadow-xl rounded-xl overflow-hidden" data-user-id="<%= user.id %>">
+                  <!-- プロフィール画像（仮のプレースホルダー） -->
+                  <div class="h-64 bg-gray-300"></div>
+
+                  <div class="p-6">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-2"><%= user.email.split('@').first %></h2>
+                    <p class="text-gray-600 mb-4"><%= user.profile.bio %></p>
+
+                    <!-- その他のプロフィール情報 -->
+                    <div class="space-y-2">
+                      <% if user.profile.birth_date %>
+                      <p class="text-sm text-gray-500">
+                        <span class="font-medium">年齢:</span>
+                        <%= ((Date.today - user.profile.birth_date).to_i / 365.25).floor %> 歳
+                      </p>
+                      <% end %>
+
+                      <% if user.profile.location.present? %>
+                      <p class="text-sm text-gray-500">
+                        <span class="font-medium">場所:</span>
+                        <%= user.profile.location %>
+                      </p>
+                      <% end %>
+
+                      <% if user.profile.interests.present? %>
+                      <p class="text-sm text-gray-500">
+                        <span class="font-medium">興味:</span>
+                        <%= user.profile.interests %>
+                      </p>
+                      <% end %>
+
+                      <% if user.profile.language.present? %>
+                      <p class="text-sm text-gray-500">
+                        <span class="font-medium">言語:</span>
+                        <%= user.profile.language %>
+                      </p>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+                <% end %>
+              </div>
+
+              <!-- ナビゲーションボタンを下部に配置 -->
+              <div class="absolute bottom-4 left-0 right-0 flex justify-between px-4">
+                <div class="swiper-button-prev bg-blue-500 text-white rounded-full p-2 hover:bg-blue-600 shadow-lg flex items-center justify-center cursor-pointer">
+                  <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="swiper-button-next bg-blue-500 text-white rounded-full p-2 hover:bg-blue-600 shadow-lg flex items-center justify-center cursor-pointer">
+                  <i class="fas fa-chevron-right"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-center mt-4 text-gray-600">
+              <p>左にスワイプで興味なし、右にスワイプでいいね！</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

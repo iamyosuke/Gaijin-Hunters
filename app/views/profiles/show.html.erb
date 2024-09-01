@@ -7,6 +7,16 @@
 
       <div class="p-6">
         <div class="space-y-6">
+          <!-- プロフィール画像 -->
+          <div class="flex justify-center">
+            <% if @profile.avatar.attached? %>
+            <%= image_tag @profile.avatar, class: "w-32 h-32 rounded-full object-cover" %>
+            <% else %>
+            <div class="w-32 h-32 bg-gray-300 rounded-full flex items-center justify-center">
+              <span class="text-gray-500 text-4xl">?</span>
+            </div>
+            <% end %>
+          </div>
           <div>
             <h2 class="text-sm font-medium text-gray-500">メールアドレス</h2>
             <p class="mt-1 text-lg text-gray-900"><%= current_user.email %></p>
