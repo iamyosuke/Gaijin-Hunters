@@ -1,4 +1,4 @@
-cdnから取るようにするためコメントアウト
+// cdnから取るようにするためコメントアウト
 // import { Controller } from "@hotwired/stimulus"
 // import Swiper from "swiper"
 
