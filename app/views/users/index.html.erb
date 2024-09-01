@@ -12,7 +12,7 @@
               ユーザープロフィール
             </h1>
 
-            <div data-controller="swiper" class="swiper-container w-full max-w-md mx-auto h-[70vh]">
+            <div data-controller="swiper" class="swiper-container w-full max-w-md mx-auto h-[70vh] relative">
               <div class="swiper-wrapper">
                 <% @users_to_swipe.each do |user| %>
                 <div class="swiper-slide bg-white shadow-xl rounded-xl overflow-hidden" data-user-id="<%= user.id %>">
@@ -58,17 +58,14 @@
                 <% end %>
               </div>
 
-              <!-- ナビゲーションボタン -->
-              <!-- Next button -->
-              <div class="swiper-button-next absolute right-4 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white rounded-full p-2 hover:bg-blue-600 shadow-lg flex items-center justify-center cursor-pointer">
-                <!-- アイコン（FontAwesomeなどを使用する場合） -->
-                <i class="fas fa-chevron-right"></i>
-              </div>
-
-              <!-- Previous button -->
-              <div class="swiper-button-prev absolute left-4 top-1/2 transform -translate-y-1/2 bg-blue-500 text-white rounded-full p-2 hover:bg-blue-600 shadow-lg flex items-center justify-center cursor-pointer">
-                <!-- アイコン（FontAwesomeなどを使用する場合） -->
-                <i class="fas fa-chevron-left"></i>
+              <!-- ナビゲーションボタンを下部に配置 -->
+              <div class="absolute bottom-4 left-0 right-0 flex justify-between px-4">
+                <div class="swiper-button-prev bg-blue-500 text-white rounded-full p-2 hover:bg-blue-600 shadow-lg flex items-center justify-center cursor-pointer">
+                  <i class="fas fa-chevron-left"></i>
+                </div>
+                <div class="swiper-button-next bg-blue-500 text-white rounded-full p-2 hover:bg-blue-600 shadow-lg flex items-center justify-center cursor-pointer">
+                  <i class="fas fa-chevron-right"></i>
+                </div>
               </div>
             </div>
 

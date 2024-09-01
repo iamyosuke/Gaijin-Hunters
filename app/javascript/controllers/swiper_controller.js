@@ -58,9 +58,12 @@
 // }
 import { Controller } from "@hotwired/stimulus";
 
-// Swiperをグローバル変数から使用
 export default class extends Controller {
   connect() {
+    this.initializeSwiper();
+  }
+
+  initializeSwiper() {
     this.swiper = new Swiper(this.element, {
       effect: "cards",
       grabCursor: true,
@@ -96,13 +99,27 @@ export default class extends Controller {
       if (data.status === 'success') {
         console.log('Swipe recorded successfully');
         if (data.match) {
-          alert('You have a new match!');
+          this.showMatchNotification();
         }
       } else {
         console.error('Error recording swipe:', data.errors);
+        this.showErrorNotification(data.errors);
       }
     })
-    .catch(error => console.error('Error:', error));
+    .catch(error => {
+      console.error('Error:', error);
+      this.showErrorNotification(['An unexpected error occurred']);
+    });
+  }
+
+  showMatchNotification() {
+    // カスタムのマッチ通知を実装
+    alert('You have a new match!'); // これは仮の実装です。より洗練された通知方法に置き換えることができます。
+  }
+
+  showErrorNotification(errors) {
+    // エラー通知を実装
+    alert(`Error: ${errors.join(', ')}`); // これは仮の実装です。より洗練された通知方法に置き換えることができます。
   }
 
   disconnect() {
